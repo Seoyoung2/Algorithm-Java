@@ -2,7 +2,7 @@ package SWEA;
 
 import java.util.Scanner;
 
-public class 홀수만더하기_2072 {
+public class Solution_2072 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
