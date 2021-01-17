@@ -18,6 +18,7 @@ public class Solution_2072 {
 			}
 			System.out.println("#" + i +" " + sum);
 		}
+		sc.close();
 	}
 
 }

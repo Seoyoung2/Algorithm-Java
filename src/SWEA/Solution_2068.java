@@ -1,7 +1,6 @@
 package SWEA;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
@@ -18,9 +17,7 @@ public class Solution_2068 {
 			st = new StringTokenizer(str);
 			while (st.hasMoreTokens()) {
 				int n = Integer.parseInt(st.nextToken());
-				if (n > max) {
-					max = n;
-				}
+				if (n > max)	max = n;
 			}
 			System.out.println("#"+i+" "+max);
 		}

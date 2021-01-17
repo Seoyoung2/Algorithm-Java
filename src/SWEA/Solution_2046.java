@@ -14,6 +14,7 @@ public class Solution_2046 {
 			n--;
 		}
 		System.out.println(ans);
+		sc.close();
 	}
 
 }
