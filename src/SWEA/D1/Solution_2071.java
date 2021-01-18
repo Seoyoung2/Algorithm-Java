@@ -1,4 +1,4 @@
-package SWEA;
+package SWEA.D1;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
