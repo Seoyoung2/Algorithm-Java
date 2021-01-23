@@ -30,6 +30,7 @@ public class Solution_1983 {
 			for (int i = 0; i < n; i++) {
 				if (goal == scores[i]) {
 					ans = credit[i/(n/10)];
+					break;
 				}
 			}
 			System.out.println("#" + tc + " " + ans);
