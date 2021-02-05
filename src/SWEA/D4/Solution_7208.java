@@ -1,7 +1,6 @@
 package SWEA.D4;
 
 import java.util.Scanner;
-import java.util.Stack;
 
 // 7208. 지도 칠하기
 public class Solution_7208 {
