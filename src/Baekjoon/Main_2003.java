@@ -24,9 +24,7 @@ public class Main_2003 {
 			sum += nums[i];
 			if (sum >= M) {
 				do {
-					if (sum == M) {
-						ans++;
-					}
+					if (sum == M)	ans++;
 					sum -= nums[start++];
 				} while (sum >= M);
 			}
