@@ -11,11 +11,10 @@ public class Main_1793 {
 		BigInteger[] dp = new BigInteger[251];
 		dp[0] = new BigInteger("1");
 		dp[1] = new BigInteger("1");
-		dp[2] = new BigInteger("3");
 		
 		BigInteger two = new BigInteger("2");
-		for (int i = 3; i < 251; i++) {
-			// dp[i] = 2*dp[i-2] + dp[i-1]
+		for (int i = 2; i < 251; i++) {
+			// dp[i] =  dp[i-1] + 2*dp[i-2]
 			dp[i] = dp[i-1].add(dp[i-2].multiply(two));
 		}
 
