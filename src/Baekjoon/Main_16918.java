@@ -34,27 +34,26 @@ public class Main_16918 {
 		// 1 0 2 0 1 0 2 0 반복
 		if(N % 2 == 0) {
 			fillBomb();
-		} else if(N % 4 == 3) {
+		} else if(N > 2) {
 			fillBomb();
 			removeBomb();
-		} else if(N > 4) {
-			fillBomb();
-			removeBomb();
-
-			for (int i = 0; i < R; i++) {
-				for (int j = 0; j < C; j++) {
-					if(map[i][j])	bomb.add(new int[] {i, j});
+			if(N % 4 == 1) {
+				for (int i = 0; i < R; i++) {
+					for (int j = 0; j < C; j++) {
+						if(map[i][j])	bomb.add(new int[] {i, j});
+					}
 				}
+				fillBomb();
+				removeBomb();
 			}
-			fillBomb();
-			if(!bomb.isEmpty())	removeBomb();
 		}
 		
 		StringBuilder sb = new StringBuilder();
 		for (boolean[] boo : map) {
-			for (boolean b : boo)
+			for (boolean b : boo) {
 				if(b)	sb.append("O");	
 				else	sb.append(".");
+			}
 			sb.append("\n");
 		}
 		System.out.println(sb.toString());
