@@ -1,68 +1,78 @@
 package SWEA.Test;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-// 4012. [모의 SW 역량테스트] 요리사
-public class Solution_4012 {
-	static int N, ans;
-	static int[][] food;
-	static boolean[] visit;
-
-	public static void main(String[] args) throws NumberFormatException, IOException {
+// 4014. [모의 SW 역량테스트] 활주로 건설
+public class Solution_4014 {
+	static int N,X,land[][],tland[][];
+	
+	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 		
 		int T = Integer.parseInt(br.readLine());
-		for (int tc = 1; tc <= T; tc++) {
-			N = Integer.parseInt(br.readLine());
-			food = new int[N][N];
+		for (int t = 1; t <= T; t++) {
+			st = new StringTokenizer(br.readLine()," ");
+			N = Integer.parseInt(st.nextToken());
+			X = Integer.parseInt(st.nextToken());
+			land = new int[N][N];
+			tland = new int[N][N];
 			
 			for (int i = 0; i < N; i++) {
-				st = new StringTokenizer(br.readLine());
-				for (int j = 0; j < N; j++)
-					food[i][j] = Integer.parseInt(st.nextToken());
+				st = new StringTokenizer(br.readLine()," ");
+				for (int j = 0; j < N; j++) {
+					tland[j][i] = land[i][j] = Integer.parseInt(st.nextToken());
+				}
 			}
-
-			ans = Integer.MAX_VALUE;
-			visit = new boolean[N];
-			combi(0, 0);
 			
-			System.out.println("#" + tc + " " + ans);
+			int ans = 0;
+			for (int i = 0; i < N; i++) {
+				if(makeRoad(land[i])) ++ans;
+				if(makeRoad(tland[i])) ++ans;
+			}
+			System.out.println("#"+t+" "+ans);
 		}
 	}
-
-	static void combi(int cnt, int start) {
-		if(cnt == N/2) {
-			ans = Math.min(ans, cook());
-			return;
-		}
-		for (int i = start; i < N; i++) {
-			visit[i] = true;
-			combi(cnt+1, i+1);
-			visit[i] = false;
-		}
-	}
-
-	static int cook() {
-		ArrayList<Integer> A = new ArrayList<>(N/2);
-		ArrayList<Integer> B = new ArrayList<>(N/2);
+	
+	// 코드 중복을 피하기 위해 매개변수로 인덱스 대신 일차원 함수의 참조값 주기
+	static boolean makeRoad(int[] road) {
+		int prev = road[0];
+		int size = 0;
 		
-		for (int i = 0; i < N; i++) {
-			if(visit[i])	A.add(i);
-			else			B.add(i);
-		}
-		
-		int cookA = 0, cookB = 0;
-		for (int i = 0; i < N/2; i++) {
-			for (int j = 0; j < N/2; j++) {
-				cookA += food[A.get(i)][A.get(j)];
-				cookB += food[B.get(i)][B.get(j)];
+		int j = 0; 
+		while(j<N) {
+			if(prev==road[j]) {
+				++size;
+				++j;
+			}else if(prev+1==road[j]) { 
+				if(size<X) return false;
+				prev++;
+				size = 1;
+				++j;
+			}else if(prev-1==road[j]) {
+				int count = 0;
+				for (int k = j; k <N; k++) {
+					if(road[k] != prev-1) break;
+					if(++count==X) break;
+				}
+				if(count<X) return false;
+				prev--;
+				size = 0;
+				j += X;
+			}else {
+				return false;
 			}
 		}
-		return Math.abs(cookA-cookB);
+		return true;
 	}
 }
+
+
+
+
+
+
+
+
