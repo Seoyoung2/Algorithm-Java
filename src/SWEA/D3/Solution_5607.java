@@ -26,6 +26,7 @@ public class Solution_5607 {
 			N = Integer.parseInt(st.nextToken());
 			R = Integer.parseInt(st.nextToken());
 			
+			// nCr = n!/(n-r)!r!   -> (r!(n-r)!)^-1 = (r!(n-r)!)^(p-2)
 			long up = 1, down = 1;
 			up = fact[N];
 			down = (fact[N-R]*fact[R])%MOD;
